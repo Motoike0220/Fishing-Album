@@ -2,6 +2,9 @@
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-24 mx-auto">
           <div class="xl:w-1/2 lg:w-3/4 w-full mx-auto text-center">
+            @if($post->image_path !== null)
+            <img src="{{asset('storage/'.$post->image_path)}}">
+            @endif
             <p class="leading-relaxed text-lg">{{$post->post}}</p>
             <h2 class="text-gray-900 font-medium title-font tracking-wider text-sm">{{$post->user->name}}</h2>
             <p class="text-gray-500">{{$post->created_at}}</p>

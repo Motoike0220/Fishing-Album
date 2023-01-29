@@ -16,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $contents = Contents::paginate(5);
+        $contents = Contents::orderBy('created_at','desc')->paginate(5);
         return view ('posts.index',compact('contents'));
     }
 
@@ -38,13 +38,24 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
-        Contents::create([
-            'post' => $request->post,
-            'user_id' => Auth::user()->id,
-            'image_path' => $request->image_path
-        ]);
+        $img = $request->img;
+        
+        if(isset($img)){
+            $path = $img->store('post_img_path','public');
+            Contents::create([
+                'post' => $request->post,
+                'user_id' => Auth::user()->id,
+                'image_path' => $path
+            ]);
 
-        return to_route('posts.index');
+            } else {
+            Contents::create([
+                'post' => $request->post,
+                'user_id' => Auth::user()->id,
+            ]);
+        }
+
+        return to_route('posts.index',compact('img'));
 
     }
 
