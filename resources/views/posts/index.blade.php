@@ -8,7 +8,6 @@
                 <div class="flex-grow pl-6">
                   {{-- <h2 class="tracking-widest text-xs title-font font-medium text-indigo-500 mb-1">CATEGORY</h2> --}}
                   <h1 class="title-font text-xl font-medium text-gray-900 mb-3"><a href="{{route('posts.show',['id' => $content->id])}}" >{{$content->created_at}}</a></h1>
-                  <p class="leading-relaxed mb-5">  <p>{{$content->post}}</p></p>
                   <a class="inline-flex items-center">
                     <img alt="blog" src="https://dummyimage.com/103x103" class="w-8 h-8 rounded-full flex-shrink-0 object-cover object-center">
                     <span class="flex-grow flex flex-col pl-3">
